@@ -1,7 +1,7 @@
 {
   "name": "pdf-to-anki-ca",
-  "version": "1.0.0",
-  "description": "Aplicació web per convertir PDFs en flashcards d'Anki automàticament amb IA",
+  "version": "1.1.0",
+  "description": "Aplicació web GRATUÏTA per convertir PDFs en flashcards d'Anki automàticament amb Google Gemini AI",
   "main": "index.html",
   "scripts": {
     "start": "npx serve",

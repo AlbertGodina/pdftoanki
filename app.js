@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Carregar API key del localStorage
 function loadApiKey() {
-    const savedKey = localStorage.getItem('anthropic_api_key');
+    const savedKey = localStorage.getItem('gemini_api_key');
     if (savedKey) {
         apiKey = savedKey;
         elements.apiKey.value = savedKey;
@@ -104,13 +104,13 @@ function saveApiKey() {
         return;
     }
 
-    if (!key.startsWith('sk-ant-')) {
-        showStatus('L\'API key hauria de començar amb "sk-ant-"', 'error');
+    if (!key.startsWith('AIza')) {
+        showStatus('L\'API key hauria de començar amb "AIza"', 'error');
         return;
     }
 
     apiKey = key;
-    localStorage.setItem('anthropic_api_key', key);
+    localStorage.setItem('gemini_api_key', key);
     showStatus('API Key guardada correctament!', 'success');
     showSection('uploadSection');
 }
@@ -215,7 +215,7 @@ async function generateFlashcards() {
     }
 }
 
-// Cridar a l'API de Claude
+// Cridar a l'API de Gemini
 async function callClaudeAPI(text, numCards, options) {
     const cardTypes = [];
     if (options.qa) cardTypes.push('preguntes i respostes directes');
@@ -229,7 +229,7 @@ TIPUS DE FLASHCARDS A CREAR:
 ${cardTypes.join(', ')}
 
 TEXT A ANALITZAR:
-${text.substring(0, 50000)}
+${text.substring(0, 30000)}
 
 INSTRUCCIONS:
 1. Identifica els conceptes més importants del text
@@ -251,30 +251,31 @@ RESPON ÚNICAMENT amb un objecte JSON amb aquest format exacte:
 
 NO afegeixis cap text addicional abans o després del JSON.`;
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'x-api-key': apiKey,
-            'anthropic-version': '2023-06-01'
         },
         body: JSON.stringify({
-            model: 'claude-sonnet-4-20250514',
-            max_tokens: 4000,
-            messages: [{
-                role: 'user',
-                content: prompt
-            }]
+            contents: [{
+                parts: [{
+                    text: prompt
+                }]
+            }],
+            generationConfig: {
+                temperature: 0.7,
+                maxOutputTokens: 8000,
+            }
         })
     });
 
     if (!response.ok) {
         const error = await response.json();
-        throw new Error(error.error?.message || 'Error cridant l\'API');
+        throw new Error(error.error?.message || 'Error cridant l\'API de Gemini');
     }
 
     const data = await response.json();
-    const content = data.content[0].text;
+    const content = data.candidates[0].content.parts[0].text;
     
     // Netejar el text per assegurar que només tenim JSON
     let jsonText = content.trim();

@@ -18,17 +18,17 @@
             <section class="api-config" id="apiSection">
                 <h2>🔑 Configuració de l'API</h2>
                 <div class="input-group">
-                    <label for="apiKey">API Key d'Anthropic:</label>
+                    <label for="apiKey">API Key de Google Gemini:</label>
                     <div class="api-input-wrapper">
                         <input 
                             type="password" 
                             id="apiKey" 
-                            placeholder="sk-ant-..."
+                            placeholder="AIza..."
                             autocomplete="off"
                         >
                         <button type="button" id="toggleApiKey" class="toggle-btn">👁️</button>
                     </div>
-                    <small>La teva API key es guarda localment al navegador i mai es comparteix.</small>
+                    <small>La teva API key es guarda localment al navegador i mai es comparteix. <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: #667eea; font-weight: 600;">Obtenir API key gratuïta</a></small>
                     <button id="saveApiKey" class="btn btn-primary">Guardar API Key</button>
                 </div>
                 <div id="apiStatus" class="status-message"></div>
@@ -113,7 +113,7 @@
         </main>
 
         <footer>
-            <p>Fet amb ❤️ utilitzant <a href="https://www.anthropic.com" target="_blank">Claude AI</a></p>
+            <p>Fet amb ❤️ utilitzant <a href="https://ai.google.dev/" target="_blank">Google Gemini</a></p>
             <p><a href="https://github.com" target="_blank">Codi font a GitHub</a></p>
         </footer>
     </div>

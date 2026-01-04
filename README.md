@@ -5,20 +5,22 @@ Una aplicació web que converteix documents PDF en flashcards d'Anki automàtica
 ## 🌟 Característiques
 
 - 📄 **Importació de PDFs**: Carrega qualsevol document PDF
-- 🤖 **Generació automàtica amb IA**: Utilitza Claude per extreure conceptes clau
+- 🤖 **Generació automàtica amb IA**: Utilitza Google Gemini (gratuït!) per extreure conceptes clau
 - 🎯 **Flashcards intel·ligents**: Crea preguntes i respostes, cloze deletions i més
 - 📦 **Export a Anki**: Genera arxius .apkg listos per importar
 - 🇨🇦 **Interfície en català**: Totalment localitzada
+- 💰 **100% GRATUÏT**: Utilitza l'API gratuïta de Google Gemini
 
 ## 🚀 Com utilitzar-ho
 
 ### Opció 1: Utilitzar online (GitHub Pages)
 
 1. Visita la pàgina web: `https://[el-teu-usuari].github.io/pdf-to-anki-ca/`
-2. Introdueix la teva API key d'Anthropic
-3. Carrega un PDF
-4. Genera les flashcards
-5. Descarrega l'arxiu .apkg
+2. Obté una API key gratuïta de Google Gemini: https://aistudio.google.com/app/apikey
+3. Introdueix la teva API key
+4. Carrega un PDF
+5. Genera les flashcards
+6. Descarrega l'arxiu .apkg
 
 ### Opció 2: Executar localment
 
@@ -37,20 +39,29 @@ npx serve
 # Visita http://localhost:8000
 ```
 
-## 🔑 Configuració de l'API Key
+## 🔑 Configuració de l'API Key (Gratuïta!)
 
-Necessitaràs una API key d'Anthropic:
+Necessitaràs una API key de Google Gemini (100% gratuïta):
 
-1. Crea un compte a [console.anthropic.com](https://console.anthropic.com)
-2. Genera una API key
-3. Introdueix-la a l'aplicació (es guarda localment al navegador)
+1. Visita [Google AI Studio](https://aistudio.google.com/app/apikey)
+2. Inicia sessió amb el teu compte de Google
+3. Fes clic a "Create API Key"
+4. Copia la clau (comença amb `AIza...`)
+5. Introdueix-la a l'aplicació (es guarda localment al navegador)
 
-**Nota**: L'API key mai es comparteix amb cap servidor extern, només s'utilitza directament des del teu navegador cap a Anthropic.
+**Nota**: L'API key mai es comparteix amb cap servidor extern, només s'utilitza directament des del teu navegador cap a Google.
+
+### 💰 És realment gratuït?
+
+**Sí!** Google Gemini ofereix una quota gratuïta molt generosa:
+- 1,500 peticions al dia (gratuït)
+- 1 milió de tokens al dia
+- Suficient per processar desenes de PDFs diàriament
 
 ## 📋 Requisits
 
 - Navegador web modern (Chrome, Firefox, Safari, Edge)
-- API key d'Anthropic
+- API key de Google Gemini (gratuïta)
 - Connexió a internet
 
 ## 🛠️ Tecnologies utilitzades
@@ -58,7 +69,7 @@ Necessitaràs una API key d'Anthropic:
 - HTML5 + CSS3 + JavaScript (Vanilla)
 - [PDF.js](https://mozilla.github.io/pdf.js/) - Extracció de text dels PDFs
 - [JSZip](https://stuvjs.github.io/jszip/) - Creació d'arxius .apkg
-- API d'Anthropic Claude - Generació intel·ligent de flashcards
+- API de Google Gemini Flash 2.0 - Generació intel·ligent de flashcards (gratuïta)
 
 ## 📖 Com funciona
 
@@ -90,7 +101,7 @@ Aquest projecte està sota la llicència MIT. Consulta l'arxiu [LICENSE](LICENSE
 
 ## ⚠️ Avís legal
 
-Aquest és un projecte independent i no està afiliat amb Anki o Anthropic. Utilitza les seves APIs i formats de forma respectuosa amb els seus termes de servei.
+Aquest és un projecte independent i no està afiliat amb Anki o Google. Utilitza les seves APIs i formats de forma respectuosa amb els seus termes de servei.
 
 ## 📧 Contacte
 

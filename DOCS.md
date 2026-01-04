@@ -65,20 +65,24 @@ async function extractTextFromPDF(file) {
 }
 ```
 
-### 3. Crida a l'API de Claude
+### 3. Crida a l'API de Google Gemini
 
 ```javascript
-const response = await fetch('https://api.anthropic.com/v1/messages', {
+const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01'
     },
     body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 4000,
-        messages: [...]
+        contents: [{
+            parts: [{
+                text: prompt
+            }]
+        }],
+        generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 8000,
+        }
     })
 });
 ```
@@ -114,10 +118,11 @@ const blob = await zip.generateAsync({ type: 'blob' });
   - `file()`: Afegeix arxius al ZIP
   - `generateAsync()`: Genera el blob del ZIP
 
-### API d'Anthropic
-- **Model**: Claude Sonnet 4
-- **Endpoint**: `https://api.anthropic.com/v1/messages`
-- **Màxim tokens**: 4000 per resposta
+### API de Google Gemini
+- **Model**: Gemini Flash 2.0 Experimental
+- **Endpoint**: `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent`
+- **Cost**: **GRATUÏT** (1,500 peticions/dia, 1M tokens/dia)
+- **Màxim tokens**: 8000 per resposta
 
 ## Format de les Flashcards
 
@@ -182,7 +187,7 @@ L'arxiu `collection.anki21` conté aquestes taules principals:
 2. **Text extractable**: El PDF ha de contenir text (no només imatges)
 3. **Idioma**: Optimitzat per català i espanyol
 4. **Format .apkg**: Implementació simplificada (pot no incloure totes les features d'Anki)
-5. **Cost API**: Cada generació consumeix crèdits de l'API d'Anthropic
+5. **Quota API**: Límit de 1,500 peticions/dia (més que suficient per ús normal)
 
 ## Millores Futures
 
@@ -198,16 +203,18 @@ L'arxiu `collection.anki21` conté aquestes taules principals:
 ## Resolució de Problemes
 
 ### L'API key no funciona
-- Verifica que comenci amb `sk-ant-`
-- Comprova que tinguis crèdits disponibles a Anthropic
+- Verifica que comenci amb `AIza`
+- Comprova que l'API key estigui activa a Google AI Studio
+- Assegura't que no hagis superat la quota diària (1,500 peticions)
 
 ### No s'extreu text del PDF
 - Assegura't que el PDF contingui text (no només imatges)
 - Prova amb un PDF més petit
 
 ### Error generant flashcards
-- El text pot ser massa llarg (límit ~50.000 caràcters)
+- El text pot ser massa llarg (límit ~30.000 caràcters)
 - Intenta amb menys flashcards o un PDF més curt
+- Comprova la connexió a internet
 
 ### L'arxiu .apkg no s'importa a Anki
 - Comprova la versió d'Anki (compatible amb 2.1+)

@@ -5,6 +5,22 @@ Tots els canvis notables d'aquest projecte es documentaran en aquest arxiu.
 El format està basat en [Keep a Changelog](https://keepachangelog.com/ca/1.0.0/),
 i aquest projecte segueix [Semantic Versioning](https://semver.org/lang/ca/).
 
+## [1.1.0] - 2026-01-05
+
+### Canviat
+- **MAJOR**: Migració de Anthropic Claude a Google Gemini Flash 2.0
+- L'aplicació ara és 100% GRATUÏTA amb la quota gratuïta de Google Gemini
+- Quota diària: 1,500 peticions i 1 milió de tokens (sense cost)
+- Millor velocitat de resposta amb Gemini Flash
+- Límit de text processat ajustat a 30,000 caràcters
+- Màxim de tokens de sortida augmentat a 8,000
+
+### Actualitzat
+- Tota la documentació per reflectir l'ús de Google Gemini
+- Instruccions per obtenir API key gratuïta de Google
+- Validació d'API key per format de Google (comença amb `AIza`)
+- Missatges d'error més clars per problemes amb l'API
+
 ## [1.0.0] - 2026-01-05
 
 ### Afegit
