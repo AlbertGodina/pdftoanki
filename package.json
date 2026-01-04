@@ -1,0 +1,31 @@
+{
+  "name": "pdf-to-anki-ca",
+  "version": "1.0.0",
+  "description": "Aplicació web per convertir PDFs en flashcards d'Anki automàticament amb IA",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve",
+    "dev": "python -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/[el-teu-usuari]/pdf-to-anki-ca.git"
+  },
+  "keywords": [
+    "anki",
+    "flashcards",
+    "pdf",
+    "education",
+    "study",
+    "ai",
+    "claude",
+    "catalan",
+    "català"
+  ],
+  "author": "Tu Nom",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/[el-teu-usuari]/pdf-to-anki-ca/issues"
+  },
+  "homepage": "https://github.com/[el-teu-usuari]/pdf-to-anki-ca#readme"
+}

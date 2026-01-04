@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF a Anki - Generador de Flashcards</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 PDF a Anki</h1>
+            <p class="subtitle">Converteix els teus PDFs en flashcards d'Anki amb IA</p>
+        </header>
+
+        <main>
+            <!-- Secció de configuració API -->
+            <section class="api-config" id="apiSection">
+                <h2>🔑 Configuració de l'API</h2>
+                <div class="input-group">
+                    <label for="apiKey">API Key d'Anthropic:</label>
+                    <div class="api-input-wrapper">
+                        <input 
+                            type="password" 
+                            id="apiKey" 
+                            placeholder="sk-ant-..."
+                            autocomplete="off"
+                        >
+                        <button type="button" id="toggleApiKey" class="toggle-btn">👁️</button>
+                    </div>
+                    <small>La teva API key es guarda localment al navegador i mai es comparteix.</small>
+                    <button id="saveApiKey" class="btn btn-primary">Guardar API Key</button>
+                </div>
+                <div id="apiStatus" class="status-message"></div>
+            </section>
+
+            <!-- Secció de càrrega de PDF -->
+            <section class="upload-section" id="uploadSection" style="display: none;">
+                <h2>📄 Carrega el teu PDF</h2>
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="pdfInput" accept=".pdf" hidden>
+                    <div class="upload-content">
+                        <div class="upload-icon">📎</div>
+                        <p>Arrossega el PDF aquí o fes clic per seleccionar</p>
+                        <small>Màxim 10 MB</small>
+                    </div>
+                </div>
+                <div id="fileInfo" class="file-info" style="display: none;"></div>
+            </section>
+
+            <!-- Secció d'opcions de generació -->
+            <section class="options-section" id="optionsSection" style="display: none;">
+                <h2>⚙️ Opcions de generació</h2>
+                <div class="options-grid">
+                    <div class="option-item">
+                        <label>
+                            <input type="checkbox" id="optQA" checked>
+                            <span>Preguntes i respostes</span>
+                        </label>
+                    </div>
+                    <div class="option-item">
+                        <label>
+                            <input type="checkbox" id="optCloze" checked>
+                            <span>Cloze deletions</span>
+                        </label>
+                    </div>
+                    <div class="option-item">
+                        <label>
+                            <input type="checkbox" id="optDefinitions" checked>
+                            <span>Definicions</span>
+                        </label>
+                    </div>
+                    <div class="option-item">
+                        <label>
+                            <input type="checkbox" id="optLists">
+                            <span>Llistes i enumeracions</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="numCards">Nombre de flashcards a generar:</label>
+                    <input type="number" id="numCards" min="5" max="100" value="20">
+                </div>
+
+                <button id="generateBtn" class="btn btn-primary btn-large">
+                    ✨ Generar Flashcards
+                </button>
+            </section>
+
+            <!-- Secció de progrés -->
+            <section class="progress-section" id="progressSection" style="display: none;">
+                <h2>🔄 Generant flashcards...</h2>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p id="progressText">Extraient text del PDF...</p>
+            </section>
+
+            <!-- Secció de previsualització -->
+            <section class="preview-section" id="previewSection" style="display: none;">
+                <h2>👀 Previsualització de flashcards</h2>
+                <div id="cardsList" class="cards-list"></div>
+                <div class="action-buttons">
+                    <button id="downloadBtn" class="btn btn-success btn-large">
+                        💾 Descarregar .apkg per Anki
+                    </button>
+                    <button id="resetBtn" class="btn btn-secondary">
+                        🔄 Generar altres flashcards
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Fet amb ❤️ utilitzant <a href="https://www.anthropic.com" target="_blank">Claude AI</a></p>
+            <p><a href="https://github.com" target="_blank">Codi font a GitHub</a></p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
